@@ -33,6 +33,7 @@
 - **Charts**：图片、图表、截图和其他可视化材料
 - **Group Info**：小组基础信息
 - **Slide**：presentation 文件和幻灯片历史版本
+- **references**：项目中使用的论文、PDF、引用文件以及其他参考资料
 
 ## 当前状态
 
