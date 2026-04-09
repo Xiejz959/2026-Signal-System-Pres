@@ -1,4 +1,4 @@
-# ECE0402 Course Project
+# ECE0402 Course Presentation
 <a id="English"></a>
 
 [Chinese](README_CN.md#Chinese)
