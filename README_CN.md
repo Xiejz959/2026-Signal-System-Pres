@@ -5,13 +5,13 @@
 
 这里是我们 **ECE0402: Signals, Systems & Probability** 课程展示项目的小小基地。🚀
 
-这个仓库用来整理我们在准备 presentation 过程中的讨论记录、notebook、代码、图表、幻灯片和小组资料。由于最终选题**还没有确定**，所以它目前更像一个共享工作空间，帮助我们一步一步整理思路、收集资料并推进整个项目。
+这个仓库用来整理我们在准备 presentation 过程中的讨论记录、notebook、代码、图表、幻灯片和小组资料。目前选题已经确定，因此这个仓库将作为我们进行资料查找、实验测试、文档整理和展示准备的共享工作空间。
 
 ## 这个仓库是做什么的
 
 这个仓库主要用于：
 
-- 探索并逐步确定项目选题
+- 围绕已确定的项目选题开展研究与测试
 - 收集参考资料和背景信息
 - 整理笔记、实验过程和初步想法
 - 存放代码、图表和展示相关材料
@@ -22,6 +22,14 @@
 - **课程号：** ECE0402
 - **课程名称：** Signals, Systems & Probability
 - **项目类型：** 小组展示
+
+## 当前选题
+
+本项目目前确定的选题为：
+
+**Designing a Noise Reduction Filter for Voice Signals**
+
+项目将聚焦在高频噪声场景下，研究如何用基础且可解释的滤波方法改善语音质量，同时尽量保留有用的语音信息。
 
 ## 仓库结构
 
@@ -35,16 +43,26 @@
 - **Slide**：presentation 文件和幻灯片历史版本
 - **references**：项目中使用的论文、PDF、引用文件以及其他参考资料
 
+## 当前主要文档
+
+目前仓库中的核心文档包括：
+
+- [Project Plan](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Project_plan_1.1.md)
+- [项目计划](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Project_plan_cn_1.1.md)
+- [Task Assignment](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Group Info/Task_assignment_1.1.md)
+- [任务分工表](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Group Info/Task_assignment_cn_1.1.md)
+- [Topic Selection Notes](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Topic_selection_0.1.md)
+
 ## 当前状态
 
-目前项目还处在前期阶段，我们主要在做：
+目前项目已经进入前期实施阶段，我们主要在做：
 
-- 选题探索
-- 背景资料收集
-- 想法整理
-- 展示内容规划
+- 文献查找
+- 系统定义
+- 测试准备
+- 幻灯片结构规划
 
-等最终方向确定之后，这个仓库会继续补充更具体的项目内容。📚
+随着项目推进，这个仓库还会继续补充实验结果、参考资料和展示材料。📚
 
 ## 补充说明
 

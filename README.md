@@ -5,13 +5,13 @@
 
 A small home base for our **ECE0402: Signals, Systems & Probability** presentation project. 🚀
 
-This repository is where we keep our discussion notes, notebooks, codes, charts, slides, and group materials while the project is taking shape. The final topic is **not decided yet**, so for now this repo works as our shared workspace for exploring ideas, collecting materials, and building the presentation step by step.
+This repository is where we keep our discussion notes, notebooks, codes, charts, slides, and group materials while the project is taking shape. The topic has now been fixed, and this repo serves as our shared workspace for research, testing, documentation, and presentation development.
 
 ## What This Repo Is For
 
 This repository is mainly used to:
 
-- explore and narrow down the project topic
+- support the selected project topic with research and testing
 - collect references and background materials
 - organize notes, experiments, and draft ideas
 - store codes, charts, and slide materials
@@ -22,6 +22,14 @@ This repository is mainly used to:
 - **Course Code:** ECE0402
 - **Course Title:** Signals, Systems & Probability
 - **Project Type:** Group Presentation
+
+## Selected Topic
+
+The current project topic is:
+
+**Designing a Noise Reduction Filter for Voice Signals**
+
+The project focuses on a high-frequency noise scenario and studies how a basic, explainable filter can improve voice quality while preserving as much useful speech information as possible.
 
 ## Project Workspace
 
@@ -35,16 +43,26 @@ This repo follows our current folder naming and keeps things simple:
 - **Slide**: presentation files and slide history
 - **references**: papers, PDFs, citation files, and other source materials used in the project
 
+## Current Documents
+
+Some key project documents currently in the repository include:
+
+- [Project Plan](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Project_plan_1.1.md)
+- [项目计划](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Project_plan_cn_1.1.md)
+- [Task Assignment](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Group Info/Task_assignment_1.1.md)
+- [任务分工表](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Group Info/Task_assignment_cn_1.1.md)
+- [Topic Selection Notes](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Topic_selection_0.1.md)
+
 ## Current Status
 
-Right now, this project is still in the early stage. We are mainly working on:
+Right now, the project has entered the early implementation stage. We are mainly working on:
 
-- topic exploration
-- background research
-- idea organization
-- presentation planning
+- literature review
+- system definition
+- test preparation
+- slide structure planning
 
-More project-specific content will be added after the final topic is confirmed. 📚
+More experiment results, references, and presentation materials will continue to be added as the project moves forward. 📚
 
 ## A Quick Note
 

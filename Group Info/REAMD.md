@@ -6,3 +6,5 @@
 This folder stores basic information about the project group.
 
 It may include member lists, role assignments, responsibility records, contact notes, and other collaboration-related information needed for project coordination. It helps keep the teamwork side of the project clear and organized.
+
+This folder may also contain task assignment tables and collaboration rules for the project.
