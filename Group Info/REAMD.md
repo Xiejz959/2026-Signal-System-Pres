@@ -1,0 +1,1 @@
+# In this folder, basic group information are demonstrated
