@@ -1,7 +1,7 @@
 # ECE0402 课程项目仓库
 <a id="Chinese"></a>
 
-[English](README.md#English)
+[英文](README.md#English)
 
 这里是我们 **ECE0402: Signals, Systems & Probability** 课程展示项目的小小基地。🚀
 
