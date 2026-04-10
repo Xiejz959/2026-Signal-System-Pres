@@ -47,11 +47,11 @@
 
 目前仓库中的核心文档包括：
 
-- [Project Plan](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Project_plan_1.1.md)
-- [项目计划](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Project_plan_cn_1.1.md)
-- [Task Assignment](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Group Info/Task_assignment_1.1.md)
-- [任务分工表](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Group Info/Task_assignment_cn_1.1.md)
-- [Topic Selection Notes](/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Discuss/Topic_selection_0.1.md)
+- [Project Plan] Project_plan_1.1.md
+- [项目计划] Project_plan_cn_1.1.md
+- [Task Assignment] Task_assignment_1.1.md
+- [任务分工表] Task_assignment_cn_1.1.md
+- [Topic Selection Notes] Topic_selection_0.1.md
 
 ## 当前状态
 
