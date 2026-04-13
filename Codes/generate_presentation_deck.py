@@ -12,6 +12,7 @@ from pptx.util import Inches, Pt
 ROOT = Path("/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP")
 SLIDE_DIR = ROOT / "Slide"
 CHART_DIR = ROOT / "Charts" / "analysis_round1"
+AUDIO_DIR = ROOT / "Codes" / "generated_audio"
 OUTPUT = SLIDE_DIR / "Voice_Noise_Presentation_1.1.pptx"
 
 BG_LIGHT = RGBColor(245, 245, 247)
@@ -139,6 +140,34 @@ def add_audio_placeholder(slide, label: str, filename: str, x: float, y: float, 
     r.font.name = "Avenir Next"
     r.font.bold = True
     r.font.size = Pt(13)
+    r.font.color.rgb = TEXT_LIGHT
+
+
+def add_audio_embed(slide, label: str, filename: str, x: float, y: float, fill_rgb: RGBColor = ACCENT_BLUE) -> None:
+    media_w = 1.05
+    media_h = 1.05
+    slide.shapes.add_movie(
+        str(AUDIO_DIR / filename),
+        Inches(x),
+        Inches(y),
+        Inches(media_w),
+        Inches(media_h),
+        mime_type="audio/wav",
+    )
+    shape = slide.shapes.add_shape(MSO_AUTO_SHAPE_TYPE.ROUNDED_RECTANGLE, Inches(x + 1.35), Inches(y + 0.08), Inches(2.0), Inches(0.88))
+    shape.fill.solid()
+    shape.fill.fore_color.rgb = fill_rgb
+    shape.line.color.rgb = fill_rgb
+    tf = shape.text_frame
+    tf.clear()
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    r = p.add_run()
+    r.text = f"{label}\n{filename}"
+    r.font.name = "Avenir Next"
+    r.font.bold = True
+    r.font.size = Pt(12)
     r.font.color.rgb = TEXT_LIGHT
 
 
@@ -382,9 +411,10 @@ add_footer(s, 8, dark=True)
 s = prs.slides.add_slide(blank)
 set_bg(s, dark=True)
 add_title(s, "Demo setup", "Audio will be inserted manually later", dark=True)
-add_audio_placeholder(s, "Clean Voice", "clean_voice.wav", 1.0, 2.0, fill_rgb=ACCENT_BLUE)
-add_audio_placeholder(s, "Noisy Voice", "noisy_voice.wav", 1.0, 3.15, fill_rgb=ACCENT_RED)
-add_audio_placeholder(s, "Filtered Voice", "filtered_voice.wav", 1.0, 4.30, fill_rgb=ACCENT_GREEN)
+add_title(s, "Demo setup", "Embedded audio + visual explanation", dark=True)
+add_audio_embed(s, "Clean Voice", "clean_voice.wav", 1.0, 2.0, fill_rgb=ACCENT_BLUE)
+add_audio_embed(s, "Noisy Voice", "noisy_voice.wav", 1.0, 3.2, fill_rgb=ACCENT_RED)
+add_audio_embed(s, "Filtered Voice", "filtered_voice.wav", 1.0, 4.4, fill_rgb=ACCENT_GREEN)
 add_bullets(
     s,
     [
@@ -394,7 +424,7 @@ add_bullets(
     ],
     6.0, 2.05, 5.2, 2.9, dark=True, size=17
 )
-add_caption(s, "Leave these placeholders intact for manual audio insertion in PowerPoint.", 1.0, 5.9, 6.0, dark=True)
+add_caption(s, "Embedded audio is included for presentation use. Keep the standalone .wav files as a backup.", 1.0, 5.95, 6.2, dark=True)
 add_footer(s, 9, dark=True)
 
 # 10
