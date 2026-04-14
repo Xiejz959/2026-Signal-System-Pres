@@ -25,6 +25,7 @@ FS_EXPECTED = 16_000
 FILTER_ORDER = 4
 CUTOFF_CANDIDATES = [2800, 3200, 3600]
 SELECTED_CUTOFF = 3200
+DEMO_WINDOW_SEC = 4.0
 
 
 def read_audio(name: str) -> tuple[np.ndarray, int]:
@@ -132,7 +133,7 @@ def plot_spectra(clean: np.ndarray, noise: np.ndarray, noisy: np.ndarray, filter
 
 
 def plot_spectrograms(clean: np.ndarray, noisy: np.ndarray, filtered: np.ndarray, fs: int) -> None:
-    fig, axes = plt.subplots(3, 1, figsize=(13, 10), sharex=True)
+    fig, axes = plt.subplots(3, 1, figsize=(13.5, 10), sharex=True)
     pairs = [
         ("Clean Voice", clean),
         ("Noisy Voice", noisy),
@@ -155,15 +156,19 @@ def plot_spectrograms(clean: np.ndarray, noisy: np.ndarray, filtered: np.ndarray
         ax.set_ylabel("Frequency (Hz)")
         ax.set_ylim(0, fs / 2)
     axes[-1].set_xlabel("Time (s)")
-    fig.colorbar(img, ax=axes, format="%+2.0f dB")
+    fig.subplots_adjust(right=0.88, hspace=0.28)
+    cax = fig.add_axes([0.90, 0.15, 0.025, 0.70])
+    fig.colorbar(img, cax=cax, format="%+2.0f dB")
     fig.suptitle("Spectrogram Comparison", fontsize=14)
-    fig.tight_layout()
     fig.savefig(CHART_DIR / "spectrogram_round1.png", dpi=180, bbox_inches="tight")
     plt.close(fig)
 
 
 def plot_demo_comparison(noisy: np.ndarray, filtered: np.ndarray, fs: int) -> None:
-    t = np.arange(len(noisy)) / fs
+    n = min(len(noisy), int(DEMO_WINDOW_SEC * fs))
+    noisy = noisy[:n]
+    filtered = filtered[:n]
+    t = np.arange(n) / fs
     fig, axes = plt.subplots(2, 1, figsize=(13, 6), sharex=True)
     axes[0].plot(t, noisy, color="tab:red", linewidth=0.8)
     axes[0].set_title("Noisy Voice")
@@ -189,7 +194,10 @@ def main() -> None:
 
     metrics = compare_candidates(clean, noisy, fs)
     selected = lowpass_filter(noisy, fs, SELECTED_CUTOFF, FILTER_ORDER)
+    filtered_3600 = lowpass_filter(noisy, fs, 3600, FILTER_ORDER)
     save_audio("filtered_voice.wav", selected, fs)
+    save_audio("filtered_voice_3200.wav", selected, fs)
+    save_audio("filtered_voice_3600.wav", filtered_3600, fs)
 
     plot_waveforms(clean, noise, noisy, selected, fs)
     plot_spectra(clean, noise, noisy, selected, fs)

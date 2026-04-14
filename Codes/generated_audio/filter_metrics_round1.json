@@ -5,29 +5,29 @@
     {
       "cutoff_hz": 2800,
       "filter_order": 4,
-      "input_snr_db": 14.79,
-      "output_snr_db": 16.52,
-      "snr_improvement_db": 1.73,
-      "corr_with_clean": 0.9975,
-      "high_freq_ratio": 0.0169
+      "input_snr_db": 14.445,
+      "output_snr_db": 16.428,
+      "snr_improvement_db": 1.983,
+      "corr_with_clean": 0.9974,
+      "high_freq_ratio": 0.0067
     },
     {
       "cutoff_hz": 3200,
       "filter_order": 4,
-      "input_snr_db": 14.79,
-      "output_snr_db": 17.058,
-      "snr_improvement_db": 2.269,
-      "corr_with_clean": 0.9983,
-      "high_freq_ratio": 0.0311
+      "input_snr_db": 14.445,
+      "output_snr_db": 16.966,
+      "snr_improvement_db": 2.521,
+      "corr_with_clean": 0.9981,
+      "high_freq_ratio": 0.0216
     },
     {
       "cutoff_hz": 3600,
       "filter_order": 4,
-      "input_snr_db": 14.79,
-      "output_snr_db": 18.874,
-      "snr_improvement_db": 4.085,
-      "corr_with_clean": 0.998,
-      "high_freq_ratio": 0.0646
+      "input_snr_db": 14.445,
+      "output_snr_db": 18.734,
+      "snr_improvement_db": 4.289,
+      "corr_with_clean": 0.9978,
+      "high_freq_ratio": 0.056
     }
   ]
 }
