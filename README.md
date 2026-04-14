@@ -41,6 +41,7 @@ This repo follows our current folder naming and keeps things simple:
 - **Charts**: figures, diagrams, screenshots, and other visuals
 - **Group Info**: basic information about the group
 - **Slide**: presentation files and slide history
+- **demo**: the final presentation package, including the latest PPT and the figures/audio files used for the actual demo
 - **references**: papers, PDFs, citation files, and other source materials used in the project
 
 ## Current Documents
