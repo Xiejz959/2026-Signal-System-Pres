@@ -1,0 +1,16 @@
+{
+  "Noisy Voice": {
+    "SNR vs clean (dB)": 17.494777716982412,
+    "High-frequency ratio vs noisy": 1.0
+  },
+  "Low-pass Baseline": {
+    "SNR vs clean (dB)": 23.973886065839633,
+    "SNR improvement (dB)": 6.4791083488572205,
+    "High-frequency ratio vs noisy": 0.04754093178875553
+  },
+  "Wiener-style Mask Result": {
+    "SNR vs clean (dB)": 21.986765984631653,
+    "SNR improvement (dB)": 4.491988267649241,
+    "High-frequency ratio vs noisy": 0.23489616785808934
+  }
+}

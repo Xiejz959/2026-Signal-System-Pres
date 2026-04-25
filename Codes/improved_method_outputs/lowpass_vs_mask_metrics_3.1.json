@@ -1,0 +1,26 @@
+{
+  "methods": {
+    "noisy_input": {
+      "snr_vs_clean_db": 17.495,
+      "high_freq_ratio_vs_noisy": 1.0
+    },
+    "lowpass_baseline": {
+      "snr_vs_clean_db": 23.974,
+      "snr_improvement_db": 6.479,
+      "high_freq_ratio_vs_noisy": 0.0475
+    },
+    "wiener_style_mask": {
+      "snr_vs_clean_db": 21.987,
+      "snr_improvement_db": 4.492,
+      "high_freq_ratio_vs_noisy": 0.2349
+    }
+  },
+  "figures": {
+    "noisy_spectrogram": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/noisy_spectrogram_3.1.png",
+    "wiener_mask": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/wiener_mask_3.1.png",
+    "wiener_masked_spectrogram": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/wiener_masked_spectrogram_3.1.png",
+    "mask_pipeline": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/mask_pipeline_3.1.png",
+    "method_comparison": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/method_comparison_3.1.png",
+    "demo_waveform_comparison": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/demo_waveform_comparison_3.1.png"
+  }
+}

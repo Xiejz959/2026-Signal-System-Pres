@@ -1,0 +1,28 @@
+{
+  "method": "Wiener-style frequency-domain mask",
+  "input_files": {
+    "clean": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Codes/generated_audio/clean_voice_2.1.mp3",
+    "noise": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Codes/generated_audio/hiss_noise_2.1.mp3",
+    "noisy": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Codes/generated_audio/noisy_voice_2.1.mp3"
+  },
+  "output_file": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/wiener_masked_voice_3.1.wav",
+  "sampling_rate_hz": 16000,
+  "duration_sec": 30.0,
+  "stft": {
+    "nperseg": 1024,
+    "noverlap": 768
+  },
+  "mask": {
+    "floor": 0.12,
+    "noise_over_estimate": 0.4,
+    "frequency_smoothing_bins": 1,
+    "mean": 0.2886,
+    "min": 0.12,
+    "max": 1.0
+  },
+  "snr": {
+    "noisy_vs_clean_db": 17.495,
+    "wiener_mask_vs_clean_db": 21.987,
+    "improvement_db": 4.492
+  }
+}
