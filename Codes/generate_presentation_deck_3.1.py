@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import numpy as np
+from PIL import Image
 from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE
@@ -11,7 +13,9 @@ from pptx.util import Inches, Pt
 
 ROOT = Path("/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP")
 DEMO_DIR = ROOT / "demo"
+FIGURE_DIR = DEMO_DIR / "Figures"
 OUTPUT = DEMO_DIR / "Voice_Noise_Presentation_3.1.pptx"
+AMBIENT_BG = FIGURE_DIR / "ambient_background_3.1.png"
 
 BG_DARK = RGBColor(10, 10, 12)
 PANEL = RGBColor(28, 28, 30)
@@ -28,10 +32,37 @@ ACCENT_GOLD = RGBColor(255, 214, 10)
 ACCENT_PURPLE = RGBColor(191, 90, 242)
 
 
+def make_ambient_background(path: Path, width: int = 2400, height: int = 1350) -> None:
+    """Create a smooth Apple-like dark blue/purple background."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    y, x = np.mgrid[0:height, 0:width]
+    base = np.zeros((height, width, 3), dtype=np.float32)
+    base[:, :] = np.array([8, 8, 11], dtype=np.float32)
+
+    def add_radial(cx: float, cy: float, radius: float, color: tuple[int, int, int], strength: float) -> None:
+        dist2 = ((x - cx) / radius) ** 2 + ((y - cy) / radius) ** 2
+        alpha = np.exp(-dist2 * 2.2) * strength
+        base[:] = base * (1 - alpha[..., None]) + np.array(color, dtype=np.float32) * alpha[..., None]
+
+    add_radial(width * 0.12, height * 0.08, width * 0.42, (8, 54, 92), 0.65)
+    add_radial(width * 0.78, height * 0.78, width * 0.46, (86, 36, 116), 0.68)
+    add_radial(width * 0.52, height * 1.05, width * 0.36, (20, 82, 98), 0.35)
+    add_radial(width * 0.95, height * 0.55, width * 0.34, (64, 22, 88), 0.42)
+
+    # Subtle diagonal falloff keeps the top-left readable and the bottom-right atmospheric.
+    diagonal = ((x / width) * 0.12 + (y / height) * 0.08).astype(np.float32)
+    base = np.clip(base + diagonal[..., None] * 20, 0, 255)
+
+    noise = np.random.default_rng(402).normal(0, 1.4, base.shape)
+    base = np.clip(base + noise, 0, 255).astype(np.uint8)
+    Image.fromarray(base, mode="RGB").save(path)
+
+
 def set_bg(slide) -> None:
     fill = slide.background.fill
     fill.solid()
     fill.fore_color.rgb = BG_DARK
+    slide.shapes.add_picture(str(AMBIENT_BG), Inches(0), Inches(0), width=Inches(13.333), height=Inches(7.5))
 
 
 def add_text(
@@ -104,6 +135,42 @@ def add_panel(slide, x: float, y: float, w: float, h: float, label: str | None =
         r.font.color.rgb = TEXT_MUTED
 
 
+def add_glass_card(
+    slide,
+    x: float,
+    y: float,
+    w: float,
+    h: float,
+    eyebrow: str,
+    title: str,
+    body: str,
+    accent: RGBColor,
+) -> None:
+    """Apple-like frosted module card using editable PowerPoint shapes."""
+    shadow = slide.shapes.add_shape(MSO_AUTO_SHAPE_TYPE.ROUNDED_RECTANGLE, Inches(x + 0.04), Inches(y + 0.06), Inches(w), Inches(h))
+    shadow.fill.solid()
+    shadow.fill.fore_color.rgb = RGBColor(0, 0, 0)
+    shadow.fill.transparency = 58
+    shadow.line.fill.background()
+
+    card = slide.shapes.add_shape(MSO_AUTO_SHAPE_TYPE.ROUNDED_RECTANGLE, Inches(x), Inches(y), Inches(w), Inches(h))
+    card.fill.solid()
+    card.fill.fore_color.rgb = RGBColor(38, 38, 42)
+    card.fill.transparency = 18
+    card.line.color.rgb = RGBColor(82, 82, 88)
+    card.line.transparency = 35
+
+    glow = slide.shapes.add_shape(MSO_AUTO_SHAPE_TYPE.OVAL, Inches(x + 0.18), Inches(y + 0.16), Inches(0.26), Inches(0.26))
+    glow.fill.solid()
+    glow.fill.fore_color.rgb = accent
+    glow.fill.transparency = 5
+    glow.line.fill.background()
+
+    add_text(slide, eyebrow.upper(), x + 0.55, y + 0.12, w - 0.75, 0.22, 8, color=TEXT_DIM, bold=True)
+    add_text(slide, title, x + 0.25, y + 0.42, w - 0.5, 0.4, 16, color=TEXT_LIGHT, bold=True)
+    add_text(slide, body, x + 0.25, y + 0.9, w - 0.5, h - 0.94, 9, color=TEXT_MUTED)
+
+
 def add_placeholder(slide, label: str, x: float, y: float, w: float, h: float) -> None:
     add_panel(slide, x, y, w, h)
     add_text(slide, label, x + 0.2, y + h / 2 - 0.25, w - 0.4, 0.5, 15, color=TEXT_MUTED, bold=True, align=PP_ALIGN.CENTER)
@@ -143,6 +210,8 @@ def add_slide(prs: Presentation, title: str, subtitle: str | None = None):
     return slide
 
 
+make_ambient_background(AMBIENT_BG)
+
 prs = Presentation()
 prs.slide_width = Inches(13.333)
 prs.slide_height = Inches(7.5)
@@ -154,6 +223,78 @@ add_text(s, "Junze Xie, Ming Chen, Zifan Xu, Yimin Chen & Wanting Luo", 0.9, 5.8
 add_footer(s, 1)
 
 # 2
+s = add_slide(prs, "Project Snapshot", "A quick map of the system before we go into the details")
+add_text(s, "Voice denoising, explained as a frequency-domain filtering story.", 0.9, 1.34, 7.4, 0.42, 14, color=TEXT_MUTED)
+add_glass_card(
+    s,
+    0.9,
+    1.95,
+    3.45,
+    1.6,
+    "Scenario",
+    "Public-announcement voice",
+    "A clean voice sample mixed with high-frequency hiss.",
+    ACCENT_BLUE,
+)
+add_glass_card(
+    s,
+    4.55,
+    1.95,
+    3.45,
+    1.6,
+    "Model",
+    "clean + noise",
+    "Signal superposition followed by an input-output system.",
+    ACCENT_ORANGE,
+)
+add_glass_card(
+    s,
+    8.2,
+    1.95,
+    3.45,
+    1.6,
+    "Baseline",
+    "Low-pass filter",
+    "A fixed frequency response suppresses high-frequency hiss.",
+    ACCENT_GREEN,
+)
+add_glass_card(
+    s,
+    0.9,
+    3.78,
+    3.45,
+    1.6,
+    "Upgrade",
+    "Wiener-style mask",
+    "A time-frequency mask makes attenuation more selective.",
+    ACCENT_PURPLE,
+)
+add_glass_card(
+    s,
+    4.55,
+    3.78,
+    3.45,
+    1.6,
+    "Evidence",
+    "Audio + spectrograms",
+    "What we hear is matched with what the plots show.",
+    ACCENT_CYAN,
+)
+add_glass_card(
+    s,
+    8.2,
+    3.78,
+    3.45,
+    1.6,
+    "Core idea",
+    "Filtering is a tradeoff",
+    "Suppress noise while preserving useful speech detail.",
+    ACCENT_GOLD,
+)
+add_text(s, "Fixed filter  |  adaptive mask  |  clearer explanation", 0.9, 5.95, 10.7, 0.45, 22, color=TEXT_LIGHT, bold=True)
+add_footer(s, 2)
+
+# 3
 s = add_slide(prs, "Why this problem matters", "Voice denoising as a real signal-processing task")
 add_bullets(s, [
     "Voice recordings and public announcements often lose clarity when background noise is present.",
@@ -163,9 +304,9 @@ add_bullets(s, [
 add_pill(s, "Real problem", 8.5, 2.0, 2.2, ACCENT_BLUE)
 add_pill(s, "Controllable model", 8.5, 2.65, 2.2, ACCENT_ORANGE, dark_text=True)
 add_pill(s, "Explainable system", 8.5, 3.3, 2.2, ACCENT_GREEN, dark_text=True)
-add_footer(s, 2)
+add_footer(s, 3)
 
-# 3
+# 4
 s = add_slide(prs, "Scenario and scope", "Real-world motivation, controlled simulation")
 add_bullets(s, [
     "Scenario: a public-announcement style voice signal affected by high-frequency hiss.",
@@ -173,9 +314,9 @@ add_bullets(s, [
     "This keeps the noise controllable, the experiment repeatable, and the result easier to analyze.",
 ], 0.95, 1.85, 6.25, 3.2, 18)
 add_placeholder(s, "PLACEHOLDER\nscenario / setup diagram", 7.65, 1.75, 4.55, 3.2)
-add_footer(s, 3)
+add_footer(s, 4)
 
-# 4
+# 5
 s = add_slide(prs, "Problem statement", "Input, output, and design goal")
 add_pill(s, "clean voice", 1.0, 2.55, 1.8, ACCENT_BLUE)
 add_arrow(s, 3.0, 2.62, "+")
@@ -188,9 +329,9 @@ add_arrow(s, 11.35, 2.62)
 add_pill(s, "enhanced voice", 11.75, 2.55, 1.25, ACCENT_GREEN, dark_text=True)
 add_text(s, "Goal: suppress hiss while preserving useful speech information.", 1.0, 4.1, 7.2, 0.45, 18, bold=True)
 add_text(s, "This is a tradeoff, not a perfect-recovery problem.", 1.0, 4.65, 7.2, 0.35, 15, color=TEXT_MUTED)
-add_footer(s, 4)
+add_footer(s, 5)
 
-# 5
+# 6
 s = add_slide(prs, "Signal model", "A Signals and Systems viewpoint")
 add_equation(s, "x_noisy[n] = x_clean[n] + n_hiss[n]", 1.0, 2.0, 6.6)
 add_bullets(s, [
@@ -200,17 +341,17 @@ add_bullets(s, [
     "frequency response explains what the system keeps or suppresses",
 ], 1.0, 3.05, 6.4, 2.4, 17)
 add_placeholder(s, "PLACEHOLDER\ninput-output system diagram", 8.0, 2.0, 4.2, 2.8)
-add_footer(s, 5)
+add_footer(s, 6)
 
-# 6
+# 7
 s = add_slide(prs, "Visualizing the signals", "Waveform, spectrum, and spectrogram")
 add_placeholder(s, "waveform\nplaceholder", 0.95, 1.85, 3.65, 2.65)
 add_placeholder(s, "FFT spectrum\nplaceholder", 4.85, 1.85, 3.65, 2.65)
 add_placeholder(s, "spectrogram\nplaceholder", 8.75, 1.85, 3.65, 2.65)
 add_text(s, "Waveform shows time-domain shape. FFT shows overall frequency energy. Spectrogram shows how energy changes over time and frequency.", 1.0, 5.25, 10.8, 0.65, 17, color=TEXT_MUTED)
-add_footer(s, 6)
+add_footer(s, 7)
 
-# 7
+# 8
 s = add_slide(prs, "Frequency-domain observation", "Why hiss suggests a filtering strategy")
 add_bullets(s, [
     "Clean voice has structured low-to-mid frequency components.",
@@ -218,9 +359,9 @@ add_bullets(s, [
     "The noisy signal makes the high-frequency region visibly stronger.",
 ], 0.95, 1.85, 5.25, 2.6, 18)
 add_placeholder(s, "PLACEHOLDER\nspectrum / spectrogram evidence", 6.65, 1.55, 5.7, 4.4)
-add_footer(s, 7)
+add_footer(s, 8)
 
-# 8
+# 9
 s = add_slide(prs, "Baseline: low-pass filter", "A fixed frequency-domain mask")
 add_bullets(s, [
     "Low-pass filtering keeps lower frequencies and attenuates higher frequencies.",
@@ -228,9 +369,9 @@ add_bullets(s, [
     "In mask language, low-pass is a fixed mask: pass below cutoff, suppress above cutoff.",
 ], 0.95, 1.85, 6.2, 3.0, 18)
 add_placeholder(s, "PLACEHOLDER\nlow-pass response / fixed mask", 7.65, 1.85, 4.55, 3.1)
-add_footer(s, 8)
+add_footer(s, 9)
 
-# 9
+# 10
 s = add_slide(prs, "Baseline parameter choice", "Why cutoff is a design decision")
 add_bullets(s, [
     "Lower cutoff: stronger noise reduction, but speech becomes duller.",
@@ -238,9 +379,9 @@ add_bullets(s, [
     "The chosen cutoff is a balance between suppression and preservation.",
 ], 0.95, 1.85, 5.65, 2.7, 18)
 add_placeholder(s, "PLACEHOLDER\ncutoff comparison figure", 7.0, 1.55, 5.25, 4.45)
-add_footer(s, 9)
+add_footer(s, 10)
 
-# 10
+# 11
 s = add_slide(prs, "Why low-pass is not enough", "The baseline is explainable, but coarse")
 add_bullets(s, [
     "Low-pass uses the same attenuation pattern for the entire signal.",
@@ -248,9 +389,9 @@ add_bullets(s, [
     "This can reduce hiss, but it can also remove useful high-frequency speech detail.",
 ], 0.95, 1.95, 6.2, 3.0, 19)
 add_text(s, "This motivates a more flexible frequency-domain mask.", 0.98, 5.25, 8.2, 0.55, 20, color=ACCENT_CYAN, bold=True)
-add_footer(s, 10)
+add_footer(s, 11)
 
-# 11
+# 12
 s = add_slide(prs, "Frequency-domain masking", "A more flexible version of the same idea")
 add_equation(s, "Y(f) = M(f)X(f)", 0.95, 1.8, 4.7)
 add_equation(s, "Y(t, f) = M(t, f)X(t, f)", 0.95, 2.75, 4.7)
@@ -260,9 +401,9 @@ add_bullets(s, [
     "Low-pass is a fixed mask; frequency masking can be more adaptive",
 ], 0.95, 3.9, 5.7, 1.7, 16)
 add_placeholder(s, "PLACEHOLDER\nmask heatmap", 7.0, 1.55, 5.25, 4.7)
-add_footer(s, 11)
+add_footer(s, 12)
 
-# 12
+# 13
 s = add_slide(prs, "Wiener-style mask", "A principled way to design the mask")
 add_equation(s, "M(f) = P_speech(f) / (P_speech(f) + P_noise(f))", 0.95, 1.85, 7.0)
 add_bullets(s, [
@@ -271,9 +412,9 @@ add_bullets(s, [
     "This follows the intuition of Wiener filtering, without claiming an industrial-grade denoising system.",
 ], 0.95, 2.9, 6.7, 2.5, 17)
 add_placeholder(s, "PLACEHOLDER\nWiener gain curve / mask", 8.15, 1.85, 4.05, 3.55)
-add_footer(s, 12)
+add_footer(s, 13)
 
-# 13
+# 14
 s = add_slide(prs, "Improved method workflow", "From STFT to masked enhanced voice")
 add_pill(s, "noisy voice", 0.95, 3.0, 1.55, ACCENT_RED)
 add_arrow(s, 2.65, 3.07)
@@ -287,25 +428,25 @@ add_pill(s, "apply mask", 10.05, 3.0, 1.65, ACCENT_CYAN, dark_text=True)
 add_arrow(s, 11.85, 3.07)
 add_pill(s, "iSTFT", 12.1, 3.0, 0.85, ACCENT_GREEN, dark_text=True)
 add_text(s, "The improved method still uses the frequency-domain story, but makes the attenuation pattern more selective.", 1.0, 4.4, 10.8, 0.6, 18, color=TEXT_MUTED)
-add_footer(s, 13)
+add_footer(s, 14)
 
-# 14
+# 15
 s = add_slide(prs, "Mask visualization", "The main new figure for the upgraded demo")
 add_placeholder(s, "Noisy spectrogram\nplaceholder", 0.85, 1.75, 3.75, 3.9)
 add_placeholder(s, "Wiener-style mask\nplaceholder", 4.8, 1.75, 3.75, 3.9)
 add_placeholder(s, "Masked spectrogram\nplaceholder", 8.75, 1.75, 3.75, 3.9)
 add_text(s, "A good result page should show the logic visually: Noisy -> Mask -> Enhanced.", 0.9, 6.05, 10.8, 0.4, 16, color=TEXT_MUTED)
-add_footer(s, 14)
+add_footer(s, 15)
 
-# 15
+# 16
 s = add_slide(prs, "Result comparison", "Baseline versus Wiener-style masking")
 add_placeholder(s, "Noisy voice\nspectrogram / audio label", 0.85, 1.7, 3.75, 3.7)
 add_placeholder(s, "Low-pass result\nspectrogram / audio label", 4.8, 1.7, 3.75, 3.7)
 add_placeholder(s, "Mask result\nspectrogram / audio label", 8.75, 1.7, 3.75, 3.7)
 add_text(s, "The goal is not to crown a perfect method, but to explain how a more flexible mask changes the filtering behavior.", 0.9, 5.9, 11.0, 0.55, 16, color=TEXT_MUTED)
-add_footer(s, 15)
+add_footer(s, 16)
 
-# 16
+# 17
 s = add_slide(prs, "Demo", "Audio slots to fill after the mask experiment is generated")
 add_placeholder(s, "AUDIO SLOT\nclean voice", 1.0, 1.8, 2.5, 1.25)
 add_placeholder(s, "AUDIO SLOT\nnoisy voice", 3.9, 1.8, 2.5, 1.25)
@@ -316,9 +457,9 @@ add_bullets(s, [
     "Then connect what we hear to the spectrogram and mask figures.",
     "Keep the demo short enough that the audience remembers the contrast.",
 ], 1.0, 4.0, 8.7, 1.8, 17)
-add_footer(s, 16)
+add_footer(s, 17)
 
-# 17
+# 18
 s = add_slide(prs, "Limitations", "What this system still cannot solve")
 add_bullets(s, [
     "The noise is simulated and simpler than a real station environment.",
@@ -327,9 +468,9 @@ add_bullets(s, [
     "More advanced methods may require adaptive filtering or learning-based denoising.",
 ], 0.95, 1.85, 8.2, 3.4, 18)
 add_placeholder(s, "PLACEHOLDER\nlimitations / extension diagram", 9.6, 2.0, 2.75, 2.7)
-add_footer(s, 17)
+add_footer(s, 18)
 
-# 18
+# 19
 s = add_slide(prs, "A simple filter can become a richer system.", "Conclusion")
 add_bullets(s, [
     "We modeled voice denoising as a Signals and Systems problem.",
@@ -337,7 +478,7 @@ add_bullets(s, [
     "Frequency-domain masking extends the same idea in a more flexible way.",
     "A Wiener-style mask gives a principled and visual way to design frequency-dependent attenuation.",
 ], 0.95, 2.0, 9.2, 3.2, 19)
-add_footer(s, 18)
+add_footer(s, 19)
 
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 prs.save(OUTPUT)
