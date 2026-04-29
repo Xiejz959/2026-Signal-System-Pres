@@ -1,0 +1,45 @@
+{
+  "source_audio": {
+    "clean": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Codes/generated_audio/clean_voice_2.1.mp3",
+    "noise": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Codes/generated_audio/hiss_noise_2.1.mp3",
+    "noisy": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Codes/generated_audio/noisy_voice_2.1.mp3",
+    "team_lowpass": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/Codes/generated_audio/filtered_voice_low_2.1.mp3"
+  },
+  "saved_audio": {
+    "clean_3.1": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/clean_voice_3.1.wav",
+    "hiss_noise_3.1": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/hiss_noise_3.1.wav",
+    "noisy_3.1": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/noisy_voice_3.1.wav",
+    "team_lowpass_3.1": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/lowpass_baseline_from_2.1_3.1.wav",
+    "lowpass_750Hz": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/lowpass_cutoff_0750_3.1.wav",
+    "lowpass_1500Hz": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/lowpass_cutoff_1500_3.1.wav",
+    "lowpass_3000Hz": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/lowpass_cutoff_3000_3.1.wav",
+    "lowpass_4000Hz": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/lowpass_cutoff_4000_3.1.wav",
+    "lowpass_7000Hz": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/lowpass_cutoff_7000_3.1.wav",
+    "wiener_masked": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Voices/wiener_masked_voice_3.1.wav"
+  },
+  "lowpass_sweep": {
+    "cutoff_min_hz": 500,
+    "cutoff_max_hz": 7500,
+    "step_hz": 250,
+    "filter_order": 6,
+    "best_snr_cutoff_hz": 3000,
+    "best_snr_db": 24.135201610658253,
+    "reasonable_zone_hz": [
+      2500,
+      4000
+    ]
+  },
+  "wiener_style_mask": {
+    "mask_floor": 0.12,
+    "noise_over_estimate": 0.4,
+    "top_guard_hz": 7200,
+    "top_guard_gain": 0.12,
+    "snr_vs_clean_db": 23.738935025405613
+  },
+  "figures": {
+    "tradeoff_sweep": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/lowpass_tradeoff_sweep_3.1.png",
+    "representative_spectrograms": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/lowpass_representative_spectrograms_3.1.png",
+    "mask_raw_vs_guarded": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/wiener_mask_raw_vs_guarded_3.1.png",
+    "pipeline_baseline_middle": "/Users/xiejz959/Xiejz/College/Signal System & Probability/project/SSP_CP/demo/Figures/mask_pipeline_baseline_middle_3.1.png"
+  }
+}

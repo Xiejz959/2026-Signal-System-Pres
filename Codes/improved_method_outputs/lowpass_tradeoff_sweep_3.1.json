@@ -1,0 +1,234 @@
+[
+  {
+    "cutoff_hz": 500,
+    "snr_vs_clean_db": 8.791285012584588,
+    "snr_improvement_db": -8.703492704397824,
+    "corr_with_clean": 0.9318652006351682,
+    "high_freq_ratio_vs_noisy": 0.004272832771484659,
+    "speech_band_error_db": -8.859217389547352
+  },
+  {
+    "cutoff_hz": 750,
+    "snr_vs_clean_db": 10.999688646557777,
+    "snr_improvement_db": -6.495089070424635,
+    "corr_with_clean": 0.9595219848508124,
+    "high_freq_ratio_vs_noisy": 0.0032686183569689896,
+    "speech_band_error_db": -11.111662180597941
+  },
+  {
+    "cutoff_hz": 1000,
+    "snr_vs_clean_db": 14.90244576532579,
+    "snr_improvement_db": -2.5923319516566217,
+    "corr_with_clean": 0.9837749812285114,
+    "high_freq_ratio_vs_noisy": 0.00421782223300259,
+    "speech_band_error_db": -15.197396582934473
+  },
+  {
+    "cutoff_hz": 1250,
+    "snr_vs_clean_db": 17.753976800012715,
+    "snr_improvement_db": 0.25919908303030326,
+    "corr_with_clean": 0.9915845480259385,
+    "high_freq_ratio_vs_noisy": 0.004077351878748646,
+    "speech_band_error_db": -18.353796403252908
+  },
+  {
+    "cutoff_hz": 1500,
+    "snr_vs_clean_db": 19.23671941499927,
+    "snr_improvement_db": 1.7419416980168592,
+    "corr_with_clean": 0.9940220582925089,
+    "high_freq_ratio_vs_noisy": 0.0037171784148183292,
+    "speech_band_error_db": -20.12354940639184
+  },
+  {
+    "cutoff_hz": 1750,
+    "snr_vs_clean_db": 20.68762034700796,
+    "snr_improvement_db": 3.192842630025549,
+    "corr_with_clean": 0.9957231550164201,
+    "high_freq_ratio_vs_noisy": 0.0038984983796931647,
+    "speech_band_error_db": -22.02398608987351
+  },
+  {
+    "cutoff_hz": 2000,
+    "snr_vs_clean_db": 21.843527507887025,
+    "snr_improvement_db": 4.348749790904613,
+    "corr_with_clean": 0.9967241240771194,
+    "high_freq_ratio_vs_noisy": 0.00395155616246677,
+    "speech_band_error_db": -23.756163484640183
+  },
+  {
+    "cutoff_hz": 2250,
+    "snr_vs_clean_db": 22.862779789713766,
+    "snr_improvement_db": 5.368002072731354,
+    "corr_with_clean": 0.9974104007044879,
+    "high_freq_ratio_vs_noisy": 0.0039033964094188074,
+    "speech_band_error_db": -25.58459590140285
+  },
+  {
+    "cutoff_hz": 2500,
+    "snr_vs_clean_db": 23.76731369007898,
+    "snr_improvement_db": 6.272535973096566,
+    "corr_with_clean": 0.997898082551896,
+    "high_freq_ratio_vs_noisy": 0.003935771865469594,
+    "speech_band_error_db": -27.68568424339646
+  },
+  {
+    "cutoff_hz": 2750,
+    "snr_vs_clean_db": 24.087588298827924,
+    "snr_improvement_db": 6.592810581845512,
+    "corr_with_clean": 0.9980482643576941,
+    "high_freq_ratio_vs_noisy": 0.00400907124076824,
+    "speech_band_error_db": -28.804551850311803
+  },
+  {
+    "cutoff_hz": 3000,
+    "snr_vs_clean_db": 24.135201610658253,
+    "snr_improvement_db": 6.640423893675841,
+    "corr_with_clean": 0.9980701518596453,
+    "high_freq_ratio_vs_noisy": 0.00409880328320974,
+    "speech_band_error_db": -29.21659313909331
+  },
+  {
+    "cutoff_hz": 3250,
+    "snr_vs_clean_db": 24.11503088918805,
+    "snr_improvement_db": 6.620253172205636,
+    "corr_with_clean": 0.9980616656335236,
+    "high_freq_ratio_vs_noisy": 0.004201900645973008,
+    "speech_band_error_db": -29.283847681257825
+  },
+  {
+    "cutoff_hz": 3500,
+    "snr_vs_clean_db": 24.067040201744692,
+    "snr_improvement_db": 6.57226248476228,
+    "corr_with_clean": 0.9980406443933454,
+    "high_freq_ratio_vs_noisy": 0.004312016143424266,
+    "speech_band_error_db": -29.05701317725915
+  },
+  {
+    "cutoff_hz": 3750,
+    "snr_vs_clean_db": 23.984053323983673,
+    "snr_improvement_db": 6.489275607001261,
+    "corr_with_clean": 0.9980034724161033,
+    "high_freq_ratio_vs_noisy": 0.004480590340148096,
+    "speech_band_error_db": -28.76886850748918
+  },
+  {
+    "cutoff_hz": 4000,
+    "snr_vs_clean_db": 23.840501656583708,
+    "snr_improvement_db": 6.345723939601296,
+    "corr_with_clean": 0.9979371726354331,
+    "high_freq_ratio_vs_noisy": 0.004819530089517081,
+    "speech_band_error_db": -28.606213220049007
+  },
+  {
+    "cutoff_hz": 4250,
+    "snr_vs_clean_db": 23.628263566140273,
+    "snr_improvement_db": 6.133485849157861,
+    "corr_with_clean": 0.9978348420759365,
+    "high_freq_ratio_vs_noisy": 0.0057289250378282554,
+    "speech_band_error_db": -28.543198564076455
+  },
+  {
+    "cutoff_hz": 4500,
+    "snr_vs_clean_db": 23.349337269125616,
+    "snr_improvement_db": 5.854559552143204,
+    "corr_with_clean": 0.9976924073245873,
+    "high_freq_ratio_vs_noisy": 0.00884957927048485,
+    "speech_band_error_db": -28.522175520450908
+  },
+  {
+    "cutoff_hz": 4750,
+    "snr_vs_clean_db": 23.00213912689737,
+    "snr_improvement_db": 5.507361409914957,
+    "corr_with_clean": 0.9975017616818808,
+    "high_freq_ratio_vs_noisy": 0.01893379495898785,
+    "speech_band_error_db": -28.515566050893028
+  },
+  {
+    "cutoff_hz": 5000,
+    "snr_vs_clean_db": 22.594363462846342,
+    "snr_improvement_db": 5.09958574586393,
+    "corr_with_clean": 0.9972574636525232,
+    "high_freq_ratio_vs_noisy": 0.04546580314603047,
+    "speech_band_error_db": -28.51356536405877
+  },
+  {
+    "cutoff_hz": 5250,
+    "snr_vs_clean_db": 22.142951708723913,
+    "snr_improvement_db": 4.648173991741501,
+    "corr_with_clean": 0.9969589381174236,
+    "high_freq_ratio_vs_noisy": 0.09628204206082411,
+    "speech_band_error_db": -28.512984326720257
+  },
+  {
+    "cutoff_hz": 5500,
+    "snr_vs_clean_db": 21.661185665349105,
+    "snr_improvement_db": 4.166407948366693,
+    "corr_with_clean": 0.9966043841189571,
+    "high_freq_ratio_vs_noisy": 0.1669269530045191,
+    "speech_band_error_db": -28.512822197920784
+  },
+  {
+    "cutoff_hz": 5750,
+    "snr_vs_clean_db": 21.162060429537807,
+    "snr_improvement_db": 3.6672827125553944,
+    "corr_with_clean": 0.9961935033673521,
+    "high_freq_ratio_vs_noisy": 0.24775203505524004,
+    "speech_band_error_db": -28.512776887004204
+  },
+  {
+    "cutoff_hz": 6000,
+    "snr_vs_clean_db": 20.661295365083845,
+    "snr_improvement_db": 3.1665176481014328,
+    "corr_with_clean": 0.995731512109641,
+    "high_freq_ratio_vs_noisy": 0.3328357767381369,
+    "speech_band_error_db": -28.51276651366988
+  },
+  {
+    "cutoff_hz": 6250,
+    "snr_vs_clean_db": 20.164772627551592,
+    "snr_improvement_db": 2.66999491056918,
+    "corr_with_clean": 0.9952184014693257,
+    "high_freq_ratio_vs_noisy": 0.42070654493056175,
+    "speech_band_error_db": -28.512767736664184
+  },
+  {
+    "cutoff_hz": 6500,
+    "snr_vs_clean_db": 19.67122332478901,
+    "snr_improvement_db": 2.176445607806599,
+    "corr_with_clean": 0.9946476920467372,
+    "high_freq_ratio_vs_noisy": 0.5131134958010989,
+    "speech_band_error_db": -28.51277021353106
+  },
+  {
+    "cutoff_hz": 6750,
+    "snr_vs_clean_db": 19.175765955579692,
+    "snr_improvement_db": 1.6809882385972799,
+    "corr_with_clean": 0.9940068632419752,
+    "high_freq_ratio_vs_noisy": 0.6132096496244503,
+    "speech_band_error_db": -28.51276984532464
+  },
+  {
+    "cutoff_hz": 7000,
+    "snr_vs_clean_db": 18.67565991862413,
+    "snr_improvement_db": 1.1808822016417189,
+    "corr_with_clean": 0.9932829439377728,
+    "high_freq_ratio_vs_noisy": 0.7185246087942316,
+    "speech_band_error_db": -28.512768828577045
+  },
+  {
+    "cutoff_hz": 7250,
+    "snr_vs_clean_db": 18.1933564136108,
+    "snr_improvement_db": 0.6985786966283882,
+    "corr_with_clean": 0.992502943898036,
+    "high_freq_ratio_vs_noisy": 0.8239553964483262,
+    "speech_band_error_db": -28.512768853820756
+  },
+  {
+    "cutoff_hz": 7500,
+    "snr_vs_clean_db": 17.740602511327292,
+    "snr_improvement_db": 0.24582479434488036,
+    "corr_with_clean": 0.9916894813806918,
+    "high_freq_ratio_vs_noisy": 0.929141182916647,
+    "speech_band_error_db": -28.51276576330424
+  }
+]
