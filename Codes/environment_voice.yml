@@ -10,5 +10,6 @@ dependencies:
   - jupyter
   - ipykernel
   - soundfile
+  - python-sounddevice
   - librosa
   - pip
